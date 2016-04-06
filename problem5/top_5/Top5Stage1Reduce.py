@@ -18,7 +18,7 @@ for line in sys.stdin:
             except:
                 sys.stderr.write('Error printing tweet length averages in stage1 reduce.')
             # _CNT should be encountered first, so set the total tweets to val.
-            sum = val
+            sum = long(val)
         currentTweeter = key
     else:
         try:
@@ -28,7 +28,7 @@ for line in sys.stdin:
 
 #Output the final tweeter and their number of tweets.
 try:
-    print '%s\t%s' % (currentTweeter, sum)
+    print '%s\t%s' % (currentTweeter, str(sum))
 except:
     sys.stderr.write('Error printing final tweeter average in stage1 reduce.')
 

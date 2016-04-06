@@ -13,11 +13,12 @@ for line in sys.stdin:
         tweet = json.loads(line)
     except:
         sys.stderr.write('Error parsing string to dict.')
+        continue
     #Get the user object.
     userName = tweet['user']['screen_name']
     userTweet = tweet['text']
 
-    if userName + '_CNT' in tweeterDict.keys():
+    if userName + '_CNT' in tweeterDict.keys() or userName + '_SUM' in tweeterDict.keys():
         #Increment tweeter tweet number.
         tweeterDict[userName.encode('ascii', 'ignore') + '_CNT'] += 1
         tweeterDict[userName.encode('ascii', 'ignore') + '_SUM'] += len(userTweet.encode('ascii', 'ignore'))
