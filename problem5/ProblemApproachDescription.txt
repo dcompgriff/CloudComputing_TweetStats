@@ -1,0 +1,29 @@
+Most tweets twitter user:
+-Stage 1:
+       -Find sum of tweets for each user.
+       -output <uname>, 1 from map stage.
+       -Sum counts in reduce.
+-Stage 2:
+       -Use top 10 design pattern to find top frequency tweeter.
+       -Find top tweeter in each mapper.
+       -Find top tweeter in the reducer set.
+
+Top 5 longest average tweeters:
+-Stage 1:
+       -Find number of tweets and sum of tweet lengths for each user in map-reduce fashion.
+       -Use key for user sum of tweets, and sum of tweet lengths.
+       -<uname>_count, <uname>_sum
+-Stage 2:
+       -Calculate average tweet length for each user.
+       -Parse each input key from <uname>_count to <uname>, ('count', <count val>)
+       -Find average in the reduce stage.
+-Stage 3:
+       -Use top 10 design pattern on each user to find the top 5 longest average tweet length for the users.
+       -For each map phase, find the top 5.
+       -In the reduce phase, find the top 5 of the top 5 sets.
+
+Bottom 5 longest average tweeters:
+-Same approach as top 5, but with selecting bottom 5 for each data set.
+
+
+
