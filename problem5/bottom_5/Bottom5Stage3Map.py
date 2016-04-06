@@ -4,7 +4,9 @@ import sys
 import string
 import json
 
-top5 = [('', 0.0), ('', 0.0), ('', 0.0), ('', 0.0), ('', 0.0)]
+top5 = []
+for i in range(0,5):
+    top5.append(('', 0.0))
 
 for line in sys.stdin:
     #Each tweet exists on a single line. Try to parse string to dict.
