@@ -6,11 +6,14 @@ import json
 
 top5 = []
 for i in range(0,5):
-    top5.append(('', 0.0))
+    top5.append(('', 10000))
 
 for line in sys.stdin:
     #Each tweet exists on a single line. Try to parse string to dict.
     (key, val) = line.strip().split('\t', 1)
+
+    if key.strip() == '' or float(val) < 0.000001:
+        continue
 
     #Append the new tweeter to the list.
     top5.append((key, float(val)))
