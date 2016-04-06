@@ -1,0 +1,1 @@
+hadoop jar /root/hadoop-2.7.1/share/hadoop/tools/lib/hadoop-streaming-2.7.1.jar -input /user/griffid6/top_tweeter_s1_out -output top_tweeter_s2_out -file *.py -mapper TopTweeterStage2Map.py -reducer TopTweeterStage2Reduce.py
