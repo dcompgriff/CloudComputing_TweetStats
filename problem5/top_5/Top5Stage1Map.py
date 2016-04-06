@@ -17,7 +17,7 @@ for line in sys.stdin:
     userName = tweet['user']['screen_name']
     userTweet = tweet['text']
 
-    if userName in tweeterDict.keys():
+    if userName + '_CNT' in tweeterDict.keys():
         #Increment tweeter tweet number.
         tweeterDict[userName.encode('ascii', 'ignore') + '_CNT'] += 1
         tweeterDict[userName.encode('ascii', 'ignore') + '_SUM'] += len(userTweet.encode('ascii', 'ignore'))
