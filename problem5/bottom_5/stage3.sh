@@ -1,0 +1,1 @@
+hadoop jar /root/hadoop-2.7.1/share/hadoop/tools/lib/hadoop-streaming-2.7.1.jar -input /user/griffid6/top_5_s2_out -output bottom_5_out -file *.py -mapper Bottom5Stage3Map.py -reducer Bottom5Stage3Reduce.py

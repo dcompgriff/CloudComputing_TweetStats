@@ -33,5 +33,5 @@ for line in sys.stdin:
         elif valKind == 'CNT_':
             count = long(valNum)
 
-
-
+# Print out the current tweeter and their average tweet length.
+print '%s\t%s' % (currentTweeter, sum / float(count))
