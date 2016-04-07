@@ -22,10 +22,10 @@ for line in sys.stdin:
                     print '%s\t%s' % (currentTweeter, sum/float(count))
             except:
                 sys.stderr.write('Error printing tweet length averages in stage2 reduce.')
-            if valKind == 'SUM_':
-                sum = long(valNum)
-            elif valKind == 'CNT_':
-                count = long(valNum)
+        if valKind == 'SUM_':
+            sum = long(valNum)
+        elif valKind == 'CNT_':
+            count = long(valNum)
         currentTweeter = key
     else:
         if valKind == 'SUM_':
