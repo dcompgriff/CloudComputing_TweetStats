@@ -1,0 +1,11 @@
+Compare tweeter with screen name 'PrezOno' to all others:
+-Stage 1:
+    -Sort average tweet lengths calculated from the top 5 stage 2.
+    -Output avg, <uname> from map stage.
+    -Simply output the <uname> for each input as it arrives. The sorter after the map phase will take
+        care of putting the data in the right order.
+
+-Post Map/Reduce:
+    -Find the position of 'PrezOno', and count the number of tweeters.
+
+
