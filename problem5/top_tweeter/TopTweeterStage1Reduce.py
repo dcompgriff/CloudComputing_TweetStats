@@ -15,7 +15,7 @@ for line in sys.stdin:
             #If the currentTweeter isn't None, then new tweeter
             # key, so output final previous tweeter uname and tweet count.
             print '%s\t%s' % (currentTweeter, totalTweets)
-            totalTweets = val
+        totalTweets = int(val)
         currentTweeter = key
     else:
         try:
@@ -25,4 +25,4 @@ for line in sys.stdin:
             continue
 
 #Output the final tweeter and their number of tweets.
-print '%s\t%s' % (currentTweeter, totalTweets)
+print '%s\t%s' % (currentTweeter, str(totalTweets))
