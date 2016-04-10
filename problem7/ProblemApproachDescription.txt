@@ -1,0 +1,11 @@
+For those tweets with location information, what lat/long (or city/state) is the centroid?
+What was the proportion of tweets with location to those without?
+
+Centroid:
+-Stage 1 (Map)
+  -Sort the users who have locations
+  -Truncate the latitude and longitudes to a comma seperated key mapped to a count
+  -Output the keys and counts
+-Stage 1 (Reduce)
+  -Combine the keys that are matching
+  -Track the max lat,lon pair

@@ -31,4 +31,3 @@ try:
     print '%s\t%s' % (currentTweeter, str(sum))
 except:
     sys.stderr.write('Error printing final tweeter average in stage1 reduce.')
-
