@@ -17,19 +17,17 @@ from pyspark import SparkContext, SparkConf
 #Create the SparkContext. The interactive shell does this for you, while pycharm doesn't.
 # conf = SparkConf().setAppName('problem1').setMaster('local')
 # sc = SparkContext()
-
+'''
+How to run: spark-submit --master yarn-client avgTweetLength.py hdfs://hadoop2-0-0/data/twitter/part-03212
+'''
 if __name__ == "__main__":
-  # if len(sys.argv) < 2:
-  #   print("enter a filename")
-  #   sys.exit(1)
+  if len(sys.argv) < 2:
+    print("enter a filename")
+    sys.exit(1)
+  filename = sys.argv[1]
 
-  #sc = SparkContext(appName="avgTweetLength")
-
-  conf = SparkConf().setAppName('problem1').setMaster('local')
-  sc = SparkContext()
-
-  #Change to the hadoop file dir on the instance.
-  ngrams = sc.textFile('../input/ngrams/googlebooks-eng-all-1gram-20120701-x', )
+  sc = SparkContext(appName='DGproblem1')
+  ngrams = sc.textFile(filename, )
 
   #1) Map each line to a tuple as (<year>, <ngram>).
   yearNGramTuples = ngrams.map(lambda line: (line.split('\t')[1], line.split('\t')[0]))
