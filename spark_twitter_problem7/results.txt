@@ -1,0 +1,2 @@
+
+Centroid: ('39,-84', 11) & Percentage: 0.301587
