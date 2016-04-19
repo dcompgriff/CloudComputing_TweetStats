@@ -29,28 +29,3 @@ for line in sys.stdin:
 # Print each tweeter's
 for key in tweeterDict.keys():
     print '%s\t%s' % (key, tweeterDict[key])
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

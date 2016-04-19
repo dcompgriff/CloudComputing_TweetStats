@@ -1,0 +1,24 @@
+For those tweets with location information, what lat/long (or city/state) is the centroid?
+What was the proportion of tweets with location to those without?
+
+Centroid:
+-Stage 1
+  -Sort the users who have locations
+  -Truncate the latitude and longitudes to a comma seperated key mapped to a count
+  -Output the keys and counts
+-Stage 2
+  -Combine the keys that are matching
+  -Track the max lat,lon pair
+-Results
+  -Centroid of locations: 39,-84 (Gives a maximum radius buffer of 65 miles)
+  -Total count of appearances: 320007
+
+Count&Average:
+-Stage 1
+  -Count the users who have locations
+  -Sum all users
+-Stage 2
+  -Take the ratio of users
+-Results
+  -Users who have location: 1868302
+  -Percentage of users who have location: 0.307271250671%
