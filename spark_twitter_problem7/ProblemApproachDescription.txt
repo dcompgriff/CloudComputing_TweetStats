@@ -1,0 +1,20 @@
++ Centroid Search (65 mile threshold)
+
+  - Read the file...
+    .textFile('hdfs://path/to/file')
+    .count()
+
+  - Trim locations to a 65 mile radius -> (<lat,lon>, 1)
+    .map(trim_locations)
+    .count()
+
++ Ratio of location:total is the percentage of tweeters with locations
+
+  - If no location, throw it out
+    .filter(filter_locations)
+
+  - Merge keys with the same <lat,lon>++
+    .reduceByKey(reduce_locations)
+
+  - Get the max value from the <lat,lon>, this is the centroid
+    .max(max_locations)
