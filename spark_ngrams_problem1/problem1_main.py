@@ -11,48 +11,35 @@ import sys
 
 
 
-import sys, json
+import sys
 from pyspark import SparkContext, SparkConf
 
 #Create the SparkContext. The interactive shell does this for you, while pycharm doesn't.
 # conf = SparkConf().setAppName('problem1').setMaster('local')
 # sc = SparkContext()
-
-
-
-# Given a full tweet object, return the text of the tweet
-def getText(line):
-  try:
-    js = json.loads(line)
-    text = js['text'].encode('ascii', 'ignore')
-    return [text]
-  except Exception as a:
-    return []
-
+'''
+How to run: spark-submit --master yarn-client avgTweetLength.py hdfs://hadoop2-0-0/data/twitter/part-03212
+'''
 if __name__ == "__main__":
-  # if len(sys.argv) < 2:
-  #   print("enter a filename")
-  #   sys.exit(1)
+  if len(sys.argv) < 2:
+    print("enter a filename")
+    sys.exit(1)
+  filename = sys.argv[1]
 
-  #sc = SparkContext(appName="avgTweetLength")
+  sc = SparkContext(appName='DGproblem1')
+  ngrams = sc.textFile(filename, )
 
-  conf = SparkConf().setAppName('problem1').setMaster('local')
-  sc = SparkContext()
-
-  #tweets = sc.textFile(sys.argv[1],)
-  tweets = sc.textFile('../input/part-03212', )
-
-  texts = tweets.flatMap(getText)
-  lengths = texts.map(lambda l: len(l))
-
-  # Just show 10 tweet lengths to validate this works
-  print(lengths.take(10))
-  # Print out the stats
-  print(lengths.stats())
+  #1) Map each line to a tuple as (<year>, <ngram>).
+  yearNGramTuples = ngrams.map(lambda line: (line.split('\t')[1], line.split('\t')[0]))
+  #2) Use the 'groupByKey()' function to group all ngrams for a year.
+  groupedYearNGramTuples = yearNGramTuples.groupByKey()
+  #3) Map each (<year>, <ngram data>) tuple to (<year>, len(set(<ngram data>)))
+  yearNGramCountTuples = groupedYearNGramTuples.map(lambda tup: (tup[0], len(set(tup[1]))))
+  #4) Collect each (<year>, <# distinct ngrams>) tuple for the year.
+  finalYearNGramTuples = yearNGramCountTuples.sortByKey()
 
   # Save to your local HDFS folder
-  lengths.saveAsTextFile("lengths")
-
+  finalYearNGramTuples.saveAsTextFile("problem1")
 
   sc.stop()
 
