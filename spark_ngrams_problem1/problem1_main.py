@@ -31,28 +31,16 @@ if __name__ == "__main__":
 
   #1) Map each line to a tuple as (<ngram>, <year>).
   nGramYearTuples = ngrams.map(lambda line: (line.split('\t')[0], line.split('\t')[1]))
-  #2) Reduce each ngram to a tuple of (<ngram>, <years list>). This gets rid of
+  #2) Reduce each ngram to a tuple of (<ngram>, <years list>). This gets rid of multiple ngrams for the same year.
   nGramYearListTuples = nGramYearTuples.reduceByKey(lambda vs, v2: vs + '\t' + v2)
-  #3) Flatmap each ngram year list tuple to (<year>, <ngram>) tuples.
+  #3) Flatmap each ngram year list tuple to (<year>, 1) tuples.
   yearnGramTuples = nGramYearListTuples.flatMap(lambda item: [(year, 1) for year in set(item[1].split('\t'))])
   #4) Reduce by key to get a sum of distinct ngrams for each year.
   sumDistinctNGrams = yearnGramTuples.reduceByKey(lambda vs, v2: long(vs) + long(v2))
+  #5) Sort by year.
+  sumDistinctNGrams = sumDistinctNGrams.sortByKey()
 
-
-  #
-  #
-  # #2) Use the 'groupByKey()' function to group all ngrams for a year.
-  # groupedYearNGramTuples = yearNGramTuples.groupByKey()
-  # #3) Map each (<year>, <ngram data>) tuple to (<year>, len(set(<ngram data>)))
-  #
-  #
-  # yearNGramCountTuples = groupedYearNGramTuples.map(lambda tup: (tup[0], len(set(tup[1]))))
-  # #4) Collect each (<year>, <# distinct ngrams>) tuple for the year.
-  # finalYearNGramTuples = yearNGramCountTuples.sortByKey()
-  #
-  # # Save to your local HDFS folder
-  sumDistinctNGrams.saveAsTextFile("problem1")
-
+  sumDistinctNGrams.saveAsTextFile("problem1_run2")
 
   sc.stop()
 
