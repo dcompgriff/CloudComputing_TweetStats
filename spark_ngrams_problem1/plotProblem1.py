@@ -8,7 +8,7 @@ yearList = []
 countList = []
 
 
-with open('../output/ngrams_output/new_out', 'rb') as f:
+with open('../output/ngrams_output/full_output', 'rb') as f:
     for line in f.readlines():
         tupElems = line.split(',')
         yearList.append(tupElems[0][3:-1])
