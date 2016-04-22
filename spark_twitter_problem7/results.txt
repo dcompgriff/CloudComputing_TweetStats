@@ -1,2 +1,1 @@
-
-Centroid: ('39,-84', 11) & Percentage: 0.301587
+Centroid: ('39,-84', 320007) & Percentage: 0.307271
